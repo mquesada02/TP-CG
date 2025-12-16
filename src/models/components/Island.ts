@@ -1,5 +1,7 @@
 import * as THREE from "three";
 import { GLTFLoader } from "three/examples/jsm/loaders/GLTFLoader.js";
+import island2Texture from "../../maps/island/island2.png";
+import coniferModel from "../glb/conifer_medium-poly.glb?url";
 
 function buildGridGeometryXZ(
 	sizeX: number,
@@ -78,7 +80,7 @@ export function createIsland(): THREE.Group {
 	const textureLoader = new THREE.TextureLoader();
 
 	const displacementMap = textureLoader.load(
-		"/src/maps/island/island2.png",
+		island2Texture,
 		(texture) => {
 			const canvas = document.createElement("canvas");
 			const img = texture.image;
@@ -137,7 +139,7 @@ function addGrassAndRocksWithRaycast(
 	const islandSize = 128;
 	const loader = new GLTFLoader();
 
-	loader.load("/src/models/glb/conifer_medium-poly.glb", (gltf) => {
+	loader.load(coniferModel, (gltf) => {
 		const treeModel = gltf.scene;
 
 		for (let i = 0; i < 18; i++) {
